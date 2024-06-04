@@ -155,7 +155,17 @@ python main_foldseek.py
 ```
 
 
-To transform each one of these 3Di sequences into a png image where each token or character has a different color (intensity) tun:
+To transform each one of these 3Di sequences into a png image where each token or character has a different color (intensity) run:
 ```
 python string2img.py
 ```
+
+
+# 3. Sequence Classification
+
+Finally, you can use different combinations of the embeddings to perform the classification. We performed a 5-Fold Cross-Validation using a Feed Forward Neural Network. 
+
+```
+python model_5_fold_classification.py
+```
+
