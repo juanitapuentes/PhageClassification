@@ -141,4 +141,6 @@ Running this command will allow you to get the text embeddings. They are going t
 </p>
 
 
-## 2.1 Image Module (IM)
+## 2.2 Image Module (IM)
+
+On this module, we transform a FASTA aminoacids sequence into its text 3D representation. FASTA sequence is converted by ProstT5, a protein language model (pLM) that translates between protein sequences and structures, encoding protein structures as token sequences based on the 3Di-alphabet from the Foldseek 3D-alignment method. This sequence is then converted into a PNG image and processed by a Visual Transformer (ViT). 
