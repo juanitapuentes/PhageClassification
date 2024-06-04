@@ -11,9 +11,12 @@ def load_data (tsv_file, faa_file):
     columns_to_exclude = ['contig', 'gene']
     class_counts = df_tsv.drop(columns_to_exclude, axis=1).sum()
 
-    plot_data(class_counts, 'results')
+    #plot_data(class_counts, 'results')
 
     return df_tsv, class_counts
+
+
+
 
 
 
