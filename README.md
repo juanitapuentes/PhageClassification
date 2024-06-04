@@ -131,6 +131,14 @@ mean_emb = embeddings['mean']
 
 To run the embeddings on the PHROGs dataset run the following command. Consider we took a subsample of 350 sequences per category (9) due to our computational limitations. Feel free to change this number to fit your resources.
 
-```python main.py
 ```
-Running this command will allow you to get the text embeddings
+python main.py
+```
+Running this command will allow you to get the text embeddings. They are going to be stored on a **.json ** file which includes a matrix containing the embeddings. This matrix has a number of rows equal to the number of sequences and number of columns equal to the features we have that are 128. 
+
+<p align="center">
+<img src="figures/matrix.png" width="300">
+</p>
+
+
+## 2.1 Image Module (IM)
