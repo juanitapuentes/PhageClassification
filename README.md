@@ -101,3 +101,34 @@ To improve the accuracy of our analysis, we filtered out PHROG families with few
 python stats.py
 ```
 
+# 2. Embeddings Extraction
+
+This section will allow you to extract the features from the Text Module (TM) and from the Image Module (IM). These embeddings are essential representations that will enable us to classify each viral protein within the category-level (9 classes) and family-level (1159 classes).
+
+## 2.1 Text Module (TM)
+
+The embedding of a an object is a representation of the object in a lower dimensional space. In this lower space, it is easier to manipulate, visualize, and apply mathematical functions on proteins' projection. Embeddings model will take a sequence of amino acids in input (string) and return a vector of lower dimension.
+
+You can choose a backend and pass a list of sequences of Amino acids to compute the embeddings.
+By default, the ```compute_embeddings``` function returns the ```<CLS>``` token embeddings.
+
+Here is an example of how you can compute the embeddings for a sample AA FASTA sequence:
+
+```python
+from biotransformers import BioTransformers
+
+sequences = [
+        "MKTVRQERLKSIVRILERSKEPVSGAQLAEELSVSRQVIVQDIAYLRSLGYNIVATPRGYVLAGG",
+        "KALTARQQEVFDLIRDHISQTGMPPTRAEIAQRLGFRSPNAAEEHLKALARKGVIEIVSGASRGIRLLQEE",
+    ]
+
+bio_trans = BioTransformers(backend="protbert")
+embeddings = bio_trans.compute_embeddings(sequences, pool_mode=('cls','mean'),batch_size=2)
+
+cls_emb = embeddings['cls']
+mean_emb = embeddings['mean']
+```
+
+To run the embeddings on the PHROGs dataset run the following command. Consider we took a subsample of 350 sequences per category (9) due to our computational limitations. Feel free to change this number to fit your resources.
+
+
