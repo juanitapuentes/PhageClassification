@@ -131,4 +131,6 @@ mean_emb = embeddings['mean']
 
 To run the embeddings on the PHROGs dataset run the following command. Consider we took a subsample of 350 sequences per category (9) due to our computational limitations. Feel free to change this number to fit your resources.
 
-
+```python main.py
+```
+Running this command will allow you to get the text embeddings
