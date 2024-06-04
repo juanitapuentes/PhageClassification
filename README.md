@@ -90,3 +90,11 @@ pre-commit install
 ## Data
 
 To download the dataset, please click the provided [link](https://drive.google.com/drive/folders/1vdIfHs8GdB_JMCP1g_U9gQ9yKoMKsd90?usp=sharing) and ensure that you place the downloaded folder at the same level as all the scripts within this directory. 
+
+The folder contains two types of files: **refseq-pharokka-proteins.faa**, which includes all the FASTA amino acid sequences of the viral proteins, and **refseq-wide-all-phrogn.tsv**, which lists all the sequence IDs along with category-level and family-level annotations.
+
+
+
+
+
+
