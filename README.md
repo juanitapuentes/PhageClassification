@@ -37,7 +37,7 @@ Proteins are essential molecules that carry out vital functions in all living or
 
 Using a transformer model trained in protein language to analyze a specific sequence can reveal extensive details about the protein. As demonstrated in the earlier example, the transformer can identify which amino acids are crucial and must be present in the protein from a linguistic perspective. This insight is especially valuable for determining amino acid regions critical to the protein's function or stability.
 
-## 0. Getting started
+# 0. Getting started
 
 ## Installation
 It is recommended to work with conda environments in order to manage the specific dependencies of this package.
@@ -94,7 +94,10 @@ To download the dataset, please click the provided [link](https://drive.google.c
 The folder contains two types of files: **refseq-pharokka-proteins.faa**, which includes all the FASTA amino acid sequences of the viral proteins, and **refseq-wide-all-phrogn.tsv**, which lists all the sequence IDs along with category-level and family-level annotations.
 
 
+# 1. Data Pre-Processing
+To improve the accuracy of our analysis, we filtered out PHROG families with fewer than 10 sequences. To apply this filtering, run the following command:
 
-
-
+```
+python stats.py
+```
 
