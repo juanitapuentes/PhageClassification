@@ -12,7 +12,9 @@ def tokenize_sequences(sequences, tokenizer):
         tokenized_sequences.append(tokenized_sequence)
     return tokenized_sequences
 
-def dataset_statistics (class_counts):
+def dataset_statistics (class_counts_total):
+    breakpoint()
+    class_counts = class_counts_total.iloc[2:]
 
     highest_value = class_counts.max()  # Maximum value in the entire dataframe
     min_value = class_counts.min()  # Minimum value in the entire dataframe
@@ -53,18 +55,27 @@ def joinSequences (faa_file):
 def createFileSequences (df_tsv, sequence_dict, directory):
 
     data = []
-
+    
     # Step 3: Correlate the information
     for index, row in df_tsv.iterrows():
         gene_id = row['gene']
-        class_annotation = row.drop(['contig', 'gene']).astype(int).idxmax()   # Get the column name with the highest value (class)
+        cat = row['category']
+        #class_annotation = row.drop(['contig', 'gene']).astype(int).idxmax()   # Get the column name with the highest value (class)
         sequence = sequence_dict.get(gene_id, 'Sequence not found')
-        data.append([gene_id, sequence, class_annotation])
+        #data.append([gene_id, sequence, class_annotation])
+        
 
-    df_final = pd.DataFrame(data, columns=['Gene ID','Sequence', 'Class'])
+        for column_name, value in row.items():
+            # Check if the value is '1'
+            if value == 1:
+                phrog = column_name
+
+        data.append([gene_id, sequence, cat, phrog])
+
+    df_final = pd.DataFrame(data, columns=['Gene ID','Sequence', 'Category','PHROG'])
 
     # Save the DataFrame to a .xlsx file
-    output_file = f'{directory}/sequences_with_classes.xlsx'
+    output_file = f'{directory}/sequences_with_classes_embeds.xlsx'
     df_final.to_excel(output_file, index=False)
 
     print(f"Data saved to {output_file}")
@@ -90,12 +101,13 @@ def embeddingsGeneration (data, name):
     model = BertModel.from_pretrained(model_name)
     sequences = [row[1] for row in data]
 
-    encoded_inputs = tokenizer(sequences, padding=True, truncation=True, return_tensors='pt')
+    encoded_inputs = tokenizer(sequences, padding=True, truncation=True, max_length=512, return_tensors='pt')
     #encoded_inputs = tokenizer(sequences, return_tensors='pt')
     with torch.no_grad():
         outputs = model(**encoded_inputs)
         embeddings = outputs.last_hidden_state 
 
+    breakpoint()
     embeddings_np = embeddings.numpy()
 
     # Flatten embeddings to obtain a single vector for each sequence
