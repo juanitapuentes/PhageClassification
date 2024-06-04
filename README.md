@@ -143,4 +143,19 @@ Running this command will allow you to get the text embeddings. They are going t
 
 ## 2.2 Image Module (IM)
 
-On this module, we transform a FASTA aminoacids sequence into its text 3D representation. FASTA sequence is converted by ProstT5, a protein language model (pLM) that translates between protein sequences and structures, encoding protein structures as token sequences based on the 3Di-alphabet from the Foldseek 3D-alignment method. This sequence is then converted into a PNG image and processed by a Visual Transformer (ViT). 
+On this module, we transform a FASTA aminoacids sequence into its text 3D representation. FASTA sequence is converted by ProstT5, a protein language model (pLM) that translates between protein sequences and structures, encoding protein structures as token sequences based on the 3Di-alphabet from the Foldseek 3D-alignment method. This sequence is then converted into a PNG image and processed by a Visual Transformer (ViT).
+
+<p align="center">
+<img src="figures/foldseek.png" width="550">
+</p>
+
+By running the following command you can get the 3Di representations of the original FASTA sequence. 
+```
+python main_foldseek.py
+```
+
+
+To transform each one of these 3Di sequences into a png image where each token or character has a different color (intensity) tun:
+```
+python string2img.py
+```
